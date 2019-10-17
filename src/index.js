@@ -17,5 +17,4 @@ cmd.registerCommand('ping', ':kappa:', {
 		"This command could be used to check if the bot is up. Or entertainment when you're bored."
 });
 
-
 cmd.connect();

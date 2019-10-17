@@ -9,7 +9,7 @@
     "start": "yarn build && node dist/index.js",
     "build:docker": "docker-compose build",
     "dev:docker": "docker-compose up dev",
-    "start:docker": "docker-compose up web nginx -d",
+    "start:docker": "docker-compose up -d",
     "end:docker": "docker-compose down",
     "clean:docker": "docker system prune -f"
   },
