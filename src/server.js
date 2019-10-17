@@ -12,10 +12,7 @@ export default function server() {
 
 	app
 		.use(cors())
-		.use(express.static(__dirname + '/../public/'))
-		.get(/.*/, (req, res) => {
-			res.sendFile(__dirname + '/../public/index.html');
-		})
+		.use(express.static(path.join(__dirname, '/../public')))
 		.listen(port, () => {
 			console.log(`Server running on: http://localhost:${port}`);
 
