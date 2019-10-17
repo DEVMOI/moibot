@@ -71,4 +71,3 @@ npm start
 
 yarn start
 ```
-https://discordapp.com/oauth2/authorize?&client_id=634433598669193226&scope=bot&permissions=2147482871&response_type=code
