@@ -8,4 +8,4 @@ services:
       - /usr/app/node_modules
     working_dir: /usr/app
     ports:
-      - '3030:3030'
+      - '3030:8000'

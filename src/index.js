@@ -1,15 +1,18 @@
-import './server';
+import server from './server';
 import config from './config';
+
 const cmd = config;
 
 cmd.on('ready', () => {
 	// When the bot is ready
 	console.log('Ready!'); // Log "Ready!"
+	server();
+
 });
 
 cmd.registerCommandAlias('halp', 'help'); // Alias !halp to !help
 
-cmd.registerCommand('ping', ':kappa:', {
+cmd.registerCommand('poke', [''], {
 	// Make a ping command
 	// Responds with "Pong!" when someone says "!ping"
 	description: 'Pong!',
