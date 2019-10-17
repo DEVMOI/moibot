@@ -7,7 +7,6 @@
     "dev": "nodemon -L --exec babel-node src/index.js",
     "build": "babel src -d dist",
     "start": "yarn build && node dist/index.js",
-    "postinstall":"yarn start",
     "build:docker": "docker-compose build",
     "dev:docker": "docker-compose up dev",
     "start:docker": "docker-compose up -d",
