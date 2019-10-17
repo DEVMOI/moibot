@@ -13,11 +13,12 @@ export default function server() {
 	app
 		.use(cors())
 		.use(express.static(__dirname + '/../public/'))
-		.get('/', (req, res) => {
+		.get(/.*/, (req, res) => {
 			res.sendFile(__dirname + '/../public/index.html');
 		})
 		.listen(port, () => {
 			console.log(`Server running on: http://localhost:${port}`);
+
 			wakeDyno('https://moi-bot-discord.herokuapp.com/');
 		});
 }
