@@ -6,7 +6,7 @@ const cmd = config;
 cmd.on('ready', () => {
 	// When the bot is ready
 	console.log('Ready!'); // Log "Ready!"
-	server();
+	// server();
 
 });
 
