@@ -14,7 +14,7 @@ export default function server() {
 		.use(cors())
 		.use(express.static(__dirname + '/../public/'))
 		.get(/.*/, (req, res) => {
-			res.sendFile(__dirname + '/public/');
+			res.sendFile(__dirname + '/../public/');
 		})
 		.listen(port, () => {
 			console.log(`Server running on: http://localhost:${port}`);
