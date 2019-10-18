@@ -5,7 +5,7 @@ const config = new Eris.CommandClient(
 	{
 		description: 'A Bot For the People',
 		owner: '@Moikune || moisite.herokuapp.com',
-		prefix: '~'
+		prefix: process.env.prefix
 	}
 );
 export default config;

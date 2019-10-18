@@ -1,26 +1,12 @@
-# Moi Node
-> Docker Repo for NodeJS/Express projects hosted on Nginx
+# MoiBot
+> A Community Discord Bot Built on the ERIS Library and NodeJS
 
 ## Introduction
-Moi Node is a NodeJs Docker Container created to be used for local development as well as for production use.
+MoiBot is a Community Discord for NodeGG and D-z Discord built to service the needs of these two communites and potentially more!
 
 ## How To Get Started
 
-- Download moiboi-cli
-```
-npm i -g moiboi-cli
-
-# or
-
-yarn -g moiboi-cli
-```
-
-- Clone project into new folder
-```
-
-moiboi clone Moikapy/MoiNode <Your Project Directory>
-
-```
+- Download (Docker)[http:www.docker.com]
 
 - Download Dependencies
 
@@ -52,7 +38,7 @@ npm run start:docker
 yarn start:docker
 ```
 
-- Start Dev Server
+- Start Dev Server without Docker
 
 ```
 npm run dev
@@ -62,7 +48,7 @@ npm run dev
 yarn dev
 ```
 
-- Start Prod Server
+- Start Prod Server without Docker
 
 ```
 npm start
