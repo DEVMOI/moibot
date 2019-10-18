@@ -6,7 +6,7 @@ import wakeDyno from 'woke-dyno';
 
 dotenv.config();
 
-export default function server() {
+export default function server(bot) {
 	const app = express();
 	const port = 8000;
 
@@ -17,6 +17,8 @@ export default function server() {
 			res.sendFile(__dirname + '/../public/index.html');
 		})
 		.listen(port, () => {
+			bot()
 			wakeDyno('https://moi-bot-discord.herokuapp.com/');
+			console.log(`http://localhost:${port}`)
 		});
 }

@@ -2,7 +2,7 @@ import server from './server';
 import config from './config';
 
 const cmd = config;
-
+const moibot = ()=>{
 cmd.on('ready', () => {
 	// When the bot is ready
 	console.log('Ready!'); // Log "Ready!"
@@ -21,3 +21,6 @@ cmd.registerCommand('poke', [''], {
 });
 
 cmd.connect();
+
+}
+server(moibot)
