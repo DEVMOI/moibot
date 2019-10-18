@@ -7,7 +7,7 @@ import wakeDyno from 'woke-dyno';
 dotenv.config();
 
 // Constants
-const PORT = 8080;
+const PORT = process.env.PORT||8080;
 export default function server(bot) {
 	const app = express();
 
