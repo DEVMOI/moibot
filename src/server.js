@@ -11,15 +11,11 @@ const PORT = process.env.PORT||8080;
 export default function server(bot) {
 	const app = express();
 
-	app.use(cors());
-	app.get('/', (req, res) => {
-		console.log('kappa')
-		res.send('Hello World!');
-	});
-	// .use(express.static(__dirname + '/../public/'))
-	// .get(/.*/, (req, res) => {
-	// 	res.sendFile(__dirname + '/../public/index.html');
-	// })
+	app.use(cors())
+	.use(express.static(__dirname + '/../public/'))
+	.get(/.*/, (req, res) => {
+		res.sendFile(__dirname + '/../public/index.html');
+	})
 	app.listen(PORT,() => {
 		// bot()
 		wakeDyno('https://moi-bot-discord.herokuapp.com/');
