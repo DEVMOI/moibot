@@ -12,10 +12,10 @@ export default function server(bot) {
 
 	app.use(cors());
 	app
-		.use(express.static(__dirname + '/../public'))
-		.get(/.*/, (req, res) => {
-			res.sendFile(__dirname + '/../public/index.html');
-		})
+		// .use(express.static(__dirname + '/../public/'))
+		// .get(/.*/, (req, res) => {
+		// 	res.sendFile(__dirname + '/../public/index.html');
+		// })
 		.listen(port, () => {
 			// bot()
 			wakeDyno('https://moi-bot-discord.herokuapp.com/');
