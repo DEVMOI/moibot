@@ -17,7 +17,7 @@ export default function server(bot) {
 		res.sendFile(__dirname + '/../public/index.html');
 	})
 	app.listen(PORT,() => {
-		// bot()
+		bot()
 		wakeDyno('https://moi-bot-discord.herokuapp.com/');
 	});
 	console.log(`http://localhost:${PORT}`);
