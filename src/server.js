@@ -18,7 +18,7 @@ export default function server(bot) {
 	})
 	app.listen(PORT,() => {
 		bot()
-		wakeDyno('https://moi-bot-discord.herokuapp.com/');
+		wakeDyno('https://moibot-prod.herokuapp.com/');
 	});
 	console.log(`http://localhost:${PORT}`);
 }
