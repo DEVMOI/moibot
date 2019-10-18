@@ -34,5 +34,8 @@
 		"@babel/preset-env": "^7.4.5",
 		"nodemon": "^1.19.0",
 		"yarn": "^1.16.0"
-	}
+	},
+	"engines": {
+    "node": "10.x"
+  }
 }

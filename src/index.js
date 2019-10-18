@@ -2,12 +2,10 @@ import server from './server';
 import config from './config';
 
 const cmd = config;
-
+const moibot = ()=>{
 cmd.on('ready', () => {
 	// When the bot is ready
-	console.log('Ready!'); // Log "Ready!"
-	server();
-
+	console.log('Ready!');
 });
 
 cmd.registerCommandAlias('halp', 'help'); // Alias !halp to !help
@@ -21,3 +19,6 @@ cmd.registerCommand('poke', [''], {
 });
 
 cmd.connect();
+
+}
+server(moibot)
