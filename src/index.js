@@ -5,9 +5,7 @@ const cmd = config;
 const moibot = ()=>{
 cmd.on('ready', () => {
 	// When the bot is ready
-	console.log('Ready!'); // Log "Ready!"
-	// server();
-
+	console.log('Ready!');
 });
 
 cmd.registerCommandAlias('halp', 'help'); // Alias !halp to !help
