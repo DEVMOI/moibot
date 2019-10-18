@@ -7,17 +7,18 @@ import wakeDyno from 'woke-dyno';
 dotenv.config();
 
 // Constants
-const PORT = process.env.PORT||8080;
-export default function server(bot) {
+const PORT = process.env.PORT || 8080;
+export default function server(moiBot) {
 	const app = express();
 
-	app.use(cors())
-	.use(express.static(__dirname + '/../public/'))
-	.get(/.*/, (req, res) => {
-		res.sendFile(__dirname + '/../public/index.html');
-	})
-	app.listen(PORT,() => {
-		bot()
+	app
+		.use(cors())
+		.use(express.static(__dirname + '/../public/'))
+		.get(/.*/, (req, res) => {
+			res.sendFile(__dirname + '/../public/index.html');
+		});
+	app.listen(PORT, () => {
+		moiBot();
 		wakeDyno('https://moibot-prod.herokuapp.com/');
 	});
 	console.log(`http://localhost:${PORT}`);
