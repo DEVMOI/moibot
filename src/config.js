@@ -4,7 +4,7 @@ const config = new Eris.CommandClient(
 	{},
 	{
 		description: 'A Bot For the People',
-		owner: '@Moikune || moisite.herokuapp.com',
+		owner: '@Moikune || https://moisite.herokuapp.com',
 		prefix: process.env.prefix
 	}
 );
