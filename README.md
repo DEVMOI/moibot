@@ -1,7 +1,9 @@
 # MoiBot
+
 > A Community Discord Bot Built on the ERIS Library and NodeJS
 
 ## Introduction
+
 MoiBot is a Community Discord for NodeGG and D-z Discord built to service the needs of these two communites and potentially more!
 
 ## How To Get Started
@@ -23,7 +25,7 @@ yarn
 ```
 npm run dev:docker
 
-# or 
+# or
 
 yarn dev:docker
 ```
@@ -56,4 +58,23 @@ npm start
 # or
 
 yarn start
+```
+
+## Create a Command
+
+- All Bot Commands are automatically added to the bot if placed in the formats below
+
+```
+export default function exampleCommand(command){
+  // Place Code Here
+
+  /* Example Code
+    command.registerCommand("ping", "Pong!", { // Make a ping command
+      // Responds with "Pong!" when someone says "!ping"
+      description: "Pong!",
+      fullDescription: "This command could be used to check if the bot is up. Or entertainment when you're bored."
+    });
+
+  */
+}
 ```

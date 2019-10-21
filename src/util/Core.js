@@ -1,6 +1,16 @@
+import path from 'path';
+import fs from 'fs';
 import config from '../config';
-import moiCmd from './moiCmd';
 export default function Core() {
-	// Takes care of initializing and auto adding bot commands to project
-	moiCmd();
+	fs.readdir(path.join(__dirname, '/../commands'), (err, files) => {
+		if (files) {
+			files.forEach(file => {
+				// Gets files from commands directory, and inits
+				require(`../commands/${file}`).default(config);
+			});
+		} else {
+			console.log('Files Not Found...');
+		}
+	});
+	config.connect();
 }
