@@ -25,7 +25,7 @@
 		"lodash": "^4.17.11",
 		"pako": "^1.0.10",
 		"sodium-native": "^2.4.6",
-		"woke-dyno": ">=0.0.3"
+		"woke-dyno": ">=0.0.4"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.4.4",

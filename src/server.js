@@ -8,6 +8,7 @@ dotenv.config();
 
 // Constants
 const PORT = process.env.PORT || 8080;
+const Wake = process.env.Wake == 'true';
 export default function server(moiBot) {
 	const app = express();
 
@@ -19,7 +20,10 @@ export default function server(moiBot) {
 		});
 	app.listen(PORT, () => {
 		moiBot();
-		wakeDyno('https://moibot-prod.herokuapp.com/');
+
+		if (Wake) {
+			wakeDyno('https://moibot-prod.herokuapp.com/').start();
+		}
 	});
 	console.log(`http://localhost:${PORT}`);
 }
