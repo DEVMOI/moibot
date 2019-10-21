@@ -3246,7 +3246,7 @@ widest-line@^2.0.0:
   dependencies:
     string-width "^2.1.1"
 
-woke-dyno@>=0.0.3:
+woke-dyno@>=0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/woke-dyno/-/woke-dyno-0.0.4.tgz#3e5306ab979cbf969c397471c94877d3c73f3946"
   integrity sha512-KyXoNUau55C1bd7ySWUvHIEVo9PLSEfN0wA8Q2Kkys0H+xP8ODiYX76hYHmVokvWLOuDz/0oSdNm+Z/Mx1GJYA==
