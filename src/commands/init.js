@@ -1,6 +1,5 @@
-const init = command => {
+export default function init(command) {
 	command.on('ready', () => {
 		console.log('Online...');
 	});
-};
-export default init
+}
