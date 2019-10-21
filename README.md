@@ -8,9 +8,11 @@ MoiBot is a Community Discord for NodeGG and D-z Discord built to service the ne
 
 ## How To Get Started
 
-- Download (Docker)[http:www.docker.com]
+- Download [Docker](http:www.docker.com) --optional for development
 
-- Download Dependencies
+- [Eris Discord Library](https://abal.moe/Eris/)
+
+- Download Dependencies:
 
 ```
 npm i
