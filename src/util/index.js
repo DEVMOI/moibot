@@ -1,5 +1,3 @@
-import moiBreak from './moiBreak'
+import moiBreak from './moiBreak';
 
-export{
-  moiBreak
-}
+export { moiBreak };

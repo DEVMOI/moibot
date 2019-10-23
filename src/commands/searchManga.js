@@ -1,7 +1,22 @@
 import axios from 'axios';
-import cheerio from 'cheerio';
 import { moiBreak } from '../util';
-export default function searchManga(moi) {
+
+/**
+ * Function that Capitalizes each word in string
+ * @Function capitalizeEachWord
+ * @param {string} str 
+ */ 
+function capitalizeEachWord(str) {
+	return str.replace(/\w\S*/g, function(txt) {
+		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	});
+}
+
+/**
+ *
+ * @param {*} moi // Used to init bot commands
+ */
+export default moi => {
 	moi.registerCommand(
 		'manga',
 		msg => {
@@ -32,13 +47,8 @@ export default function searchManga(moi) {
 
 			let clean = msg.content.replace(`${process.env.prefix}manga `, '');
 
-			function capitalizeEachWord(str) {
-				return str.replace(/\w\S*/g, function(txt) {
-					return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-				});
-			}
 			clean = capitalizeEachWord(clean);
-			variables.search = clean
+			variables.search = clean;
 
 			axios
 				.post('https://graphql.anilist.co', {
@@ -83,4 +93,4 @@ export default function searchManga(moi) {
 				"This command could be used to check if the bot is up. Or entertainment when you're bored."
 		}
 	);
-}
+};

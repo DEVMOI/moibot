@@ -1,4 +1,4 @@
 import server from './server';
-import Core from './core';
+import core from './core';
 
-server(Core);
+server(core);

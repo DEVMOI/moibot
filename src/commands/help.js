@@ -1,3 +1,3 @@
-export default function help(command) {
-	command.registerCommandAlias('halp', 'help'); // Alias !halp to !help
-}
+export default moi => {
+	moi.registerCommandAlias('halp', 'help'); // Alias !halp to !help
+};
