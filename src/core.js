@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import config from './config';
 const { init } = config;
-export default function Core() {
+export default () => {
 	fs.readdir(path.join(__dirname, '/commands'), (err, files) => {
 		if (files) {
 			files.forEach(file => {
@@ -14,4 +14,4 @@ export default function Core() {
 		}
 	});
 	init.connect();
-}
+};

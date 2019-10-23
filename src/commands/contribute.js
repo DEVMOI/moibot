@@ -4,9 +4,9 @@ const setContributionMessage = () => {
 	return contributeMessage;
 };
 
-export default function Contribute(command) {
-	command.registerCommand('contribute', setContributionMessage, {
+export default moi => {
+	moi.registerCommand('contribute', setContributionMessage, {
 		description: 'Want to help?',
 		fullDescription: 'Information on how and where to help with the project.'
 	});
-}
+};

@@ -8,7 +8,7 @@ dotenv.config();
 // Constants
 const PORT = process.env.PORT || 8080;
 const Wake = process.env.Wake == 'true';
-export default function server(moiBot) {
+export default moiBot => {
 	const app = express();
 
 	app
@@ -25,4 +25,4 @@ export default function server(moiBot) {
 		}
 	});
 	console.log(`http://localhost:${PORT}`);
-}
+};

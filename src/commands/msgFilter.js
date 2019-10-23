@@ -1,6 +1,6 @@
 import config from '../config';
 const { bannedWords } = config;
-export default function msgFilter(command) {
+export default command => {
 	command.on('messageCreate', msg => {
 		bannedWords.forEach(word => {
 			if (msg.content.includes(word)) {
@@ -8,4 +8,4 @@ export default function msgFilter(command) {
 			}
 		});
 	});
-}
+};

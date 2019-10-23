@@ -1,5 +1,5 @@
 import Eris from 'eris';
-const config = {
+export default {
 	init: new Eris.CommandClient(
 		process.env.BOT_TOKEN,
 		{},
@@ -11,4 +11,4 @@ const config = {
 	),
 	bannedWords: []
 };
-export default config;
+// export default config;

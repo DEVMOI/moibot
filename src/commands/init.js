@@ -1,5 +1,5 @@
-export default function init(command) {
+export default command => {
 	command.on('ready', () => {
 		console.log('Online...');
 	});
-}
+};
