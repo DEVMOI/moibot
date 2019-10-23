@@ -1,6 +1,6 @@
 import Eris from 'eris';
 const config = {
-	moiBot: new Eris.CommandClient(
+	init: new Eris.CommandClient(
 		process.env.BOT_TOKEN,
 		{},
 		{
@@ -9,6 +9,6 @@ const config = {
 			prefix: process.env.prefix
 		}
 	),
-	bannedWords: ['nigger']
+	bannedWords: []
 };
 export default config;

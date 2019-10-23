@@ -1,59 +1,79 @@
-export default function searchManga(command) {
-	command.registerCommand(
+import axios from 'axios';
+import cheerio from 'cheerio';
+import { moiBreak } from '../util';
+export default function searchManga(moi) {
+	moi.registerCommand(
 		'manga',
-		() => {
+		msg => {
 			var query = `
-    query ($id: Int) { # Define which variables will be used in the query (id)
-      Media (id: $id, type: ANIME) { # Insert our variables into the query arguments (id) (type: ANIME is hard-coded in the query)
-        id
-        title {
-          romaji
-          english
-          native
-        }
-      }
-    }
-    `;
+				query ($id: Int, $page: Int, $perPage: Int, $chapters: Int, $search: String) {
+					Page (page: $page, perPage: $perPage) {
+						pageInfo {
+							total
+							currentPage
+							lastPage
+							hasNextPage
+							perPage
+						}
+						media (id: $id, search: $search,chapters: $chapters, type:MANGA, format:MANGA ) {
+							id
+							title {
+								romaji
+								english
+							}
+						}
+					}
+				}
+				`;
 
-			// Define our query variables and values that will be used in the query request
 			var variables = {
-				id: 15125
+				search: ''
 			};
 
-			// Define the config we'll need for our Api request
-			var url = 'https://graphql.anilist.co',
-				options = {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						Accept: 'application/json'
-					},
-					body: JSON.stringify({
-						query: query,
-						variables: variables
-					})
-				};
+			let clean = msg.content.replace(`${process.env.prefix}manga `, '');
 
-			// Make the HTTP Api request
-			fetch(url, options)
-				.then(handleResponse)
-				.then(handleData)
-				.catch(handleError);
-
-			function handleResponse(response) {
-				return response.json().then(function(json) {
-					return response.ok ? json : Promise.reject(json);
+			function capitalizeEachWord(str) {
+				return str.replace(/\w\S*/g, function(txt) {
+					return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 				});
 			}
+			clean = capitalizeEachWord(clean);
+			variables.search = clean
 
-			function handleData(data) {
-				console.log(data);
-			}
+			axios
+				.post('https://graphql.anilist.co', {
+					query: query,
+					variables: variables
+				})
+				.then(function(response) {
+					let isFound = false;
+					const { media } = response.data.data.Page;
+					media.forEach(item => {
+						let nameCheck, title;
+						const { english, romaji } = item.title;
 
-			function handleError(error) {
-				alert('Error, check console');
-				console.error(error);
-			}
+						if (english !== null) {
+							nameCheck = english.includes(clean);
+							title = english;
+						} else {
+							nameCheck = romaji.includes(clean);
+							title = romaji;
+						}
+
+						if (!nameCheck) {
+							if (isFound) {
+								moiBreak(`${clean} Found`);
+							}
+							moi.createMessage(msg.channel.id, `${clean} Not Found`);
+							moiBreak(`${clean} Not Found`);
+						}
+						isFound = true;
+						moi.createMessage(msg.channel.id, title);
+					});
+				})
+				.catch(e => {
+					moiBreak(e);
+				});
 		},
 		{
 			// Make a ping command
