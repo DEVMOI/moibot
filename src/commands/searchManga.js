@@ -1,16 +1,6 @@
 import axios from 'axios';
-import { moiBreak } from '../util';
+import { moiBreak, toCapitalize } from '../util';
 
-/**
- * Function that Capitalizes each word in string
- * @Function capitalizeEachWord
- * @param {string} str 
- */ 
-function capitalizeEachWord(str) {
-	return str.replace(/\w\S*/g, function(txt) {
-		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-	});
-}
 
 /**
  *
@@ -47,7 +37,7 @@ export default moi => {
 
 			let clean = msg.content.replace(`${process.env.prefix}manga `, '');
 
-			clean = capitalizeEachWord(clean);
+			clean = toCapitalize(clean);
 			variables.search = clean;
 
 			axios
