@@ -1,3 +1,3 @@
 import moiBreak from './moiBreak';
-
-export { moiBreak };
+import toCapitalize from './toCapitalize'
+export { moiBreak, toCapitalize };

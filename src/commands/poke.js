@@ -1,1 +1,1 @@
-export default command => {};
+export default moi => {};

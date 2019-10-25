@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { moiBreak, toCapitalize } from '../util';
 
-
 /**
  *
  * @param {*} moi // Used to init bot commands
@@ -11,26 +10,27 @@ export default moi => {
 		'manga',
 		msg => {
 			var query = `
-				query ($id: Int, $page: Int, $perPage: Int, $chapters: Int, $search: String) {
-					Page (page: $page, perPage: $perPage) {
-						pageInfo {
-							total
-							currentPage
-							lastPage
-							hasNextPage
-							perPage
+			query ($id: Int, $page: Int, $perPage: Int, $chapters: Int, $search: String) {
+				Page(page: $page, perPage: $perPage) {
+
+					media(id: $id, search: $search, chapters: $chapters, type: MANGA, format: MANGA) {
+						id
+						title {
+							romaji
+							english
+							native
 						}
-						media (id: $id, search: $search,chapters: $chapters, type:MANGA, format:MANGA ) {
-							id
-							title {
-								romaji
-								english
-							}
-						}
+						format
+						chapters
+						volumes
+						genre
+						averageScore
+						popularity
+						
 					}
 				}
-				`;
-
+			}
+			`;
 			var variables = {
 				search: ''
 			};
@@ -49,15 +49,25 @@ export default moi => {
 					let isFound = false;
 					const { media } = response.data.data.Page;
 					media.forEach(item => {
-						let nameCheck, title;
-						const { english, romaji } = item.title;
+						let {
+							nameCheck,
+							title,
+							toCode,
+							format,
+							chapters,
+							volumes,
+							genres,
+							averageScore,
+							popularity
+						} = item;
+						const { english, romaji } = title;
 
 						if (english !== null) {
 							nameCheck = english.includes(clean);
-							title = english;
+							moititle = english;
 						} else {
 							nameCheck = romaji.includes(clean);
-							title = romaji;
+							moititle = romaji;
 						}
 
 						if (!nameCheck) {
@@ -67,8 +77,30 @@ export default moi => {
 							moi.createMessage(msg.channel.id, `${clean} Not Found`);
 							moiBreak(`${clean} Not Found`);
 						}
+
 						isFound = true;
-						moi.createMessage(msg.channel.id, title);
+						toCode = '```';
+						const message = `
+						${toCode}
+
+						${moititle}
+						
+						${format}
+						
+						${chapters}
+
+						${volumes}
+
+						${genres}
+
+						${averageScore}
+
+						${popularity}
+
+						${toCode}
+						`;
+						console.log(message);
+						moi.createMessage(msg.channel.id, message);
 					});
 				})
 				.catch(e => {
