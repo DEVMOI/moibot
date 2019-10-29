@@ -1,25 +1,13 @@
-import express from 'express';
-import cors from 'cors';
+import app from './app';
 import dotenv from 'dotenv';
 import wakeDyno from 'woke-dyno';
-
 dotenv.config();
-
 // Constants
 const PORT = process.env.PORT || 8080;
 const Wake = process.env.Wake == 'true';
-export default moiBot => {
-	const app = express();
 
-	app
-		.use(cors())
-		.use(express.static(__dirname + '/../public/'))
-		.get(/.*/, (req, res) => {
-			res.sendFile(__dirname + '/../public/index.html');
-		});
+export default () => {
 	app.listen(PORT, () => {
-		moiBot();
-
 		if (Wake) {
 			wakeDyno('https://moibot-prod.herokuapp.com/').start();
 		}

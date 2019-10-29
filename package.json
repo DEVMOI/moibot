@@ -7,11 +7,12 @@
 		"dev": "nodemon -L --exec babel-node src/index.js",
 		"build": "babel src -d dist",
 		"start": "yarn build && node dist/index.js",
+		"dev:docker": "docker-compose up -d && yarn test",
 		"build:docker": "docker-compose build",
 		"start:docker": "docker-compose up -d",
 		"end:docker": "docker-compose down",
 		"clean:docker": "docker system prune -f",
-		"test": "jest"
+		"test": "jest --watch"
 	},
 	"license": "MIT",
 	"dependencies": {
@@ -37,6 +38,8 @@
 		"babel-jest": "^24.9.0",
 		"jest": "^24.9.0",
 		"nodemon": "^1.19.0",
+		"superagent": "^5.1.0",
+		"supertest": "^4.0.2",
 		"yarn": "^1.22.0"
 	},
 	"engines": {
