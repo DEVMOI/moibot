@@ -6,7 +6,7 @@ dotenv.config();
 const PORT = process.env.PORT || 8080;
 const Wake = process.env.Wake == 'true';
 
-export default () => {
+export default app => {
 	app.listen(PORT, () => {
 		if (Wake) {
 			wakeDyno('https://moibot-prod.herokuapp.com/').start();
