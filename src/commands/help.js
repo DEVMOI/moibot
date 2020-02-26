@@ -1,3 +1,5 @@
 export default moi => {
-	moi.registerCommandAlias('halp', 'help'); // Alias !halp to !help
+  // Alias !halp to !help
+  moi.registerCommandAlias('halp', 'help');
+  moi.registerCommandAlias('h', 'help');
 };

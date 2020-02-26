@@ -1,16 +1,13 @@
-import app from './app';
+import app from '../api/app';
 import dotenv from 'dotenv';
 import wakeDyno from 'woke-dyno';
 dotenv.config();
 // Constants
 const PORT = process.env.PORT || 8080;
 const Wake = process.env.Wake == 'true';
-
-export default app => {
-	app.listen(PORT, () => {
-		if (Wake) {
-			wakeDyno('https://moibot-prod.herokuapp.com/').start();
-		}
-	});
-	console.log(`http://localhost:${PORT}`);
+export default () => {
+  app.listen(PORT, () => {
+    Wake ? wakeDyno('https://moibot-prod.herokuapp.com/').start() : null;
+    console.log(`http://localhost:${PORT}`);
+  });
 };
