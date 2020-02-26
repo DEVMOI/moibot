@@ -1,43 +1,44 @@
 {
-	"name": "moibot",
-	"version": "0.1.3",
-	"main": "src/index.js",
-	"description": "A Community Discord Bot",
-	"scripts": {
-		"dev": "nodemon -L --exec babel-node src/index.js",
-		"build": "babel src -d dist",
-		"start": "yarn build && node dist/index.js",
-		"build:docker": "docker-compose build",
-		"start:docker": "docker-compose up -d",
-		"end:docker": "docker-compose down",
-		"clean:docker": "docker system prune -f",
-		"test": "jest"
-	},
-	"license": "MIT",
-	"dependencies": {
-		"@babel/polyfill": "^7.4.4",
-		"bufferutil": "^4.0.1",
-		"cors": "^2.8.5",
-		"dotenv": "^8.0.0",
-		"eris": "^0.11.0",
-		"eventemitter3": "^4.0.0",
-		"express": "^4.17.0",
-		"lodash": "^4.17.11",
-		"pako": "^1.0.10",
-		"sodium-native": "^2.4.6",
-		"woke-dyno": ">=0.0.4"
-	},
-	"devDependencies": {
-		"@babel/cli": "^7.4.4",
-		"@babel/core": "^7.0.0",
-		"@babel/node": "^7.4.5",
-		"@babel/preset-env": "^7.4.5",
-		"babel-jest": "^24.9.0",
-		"jest": "^24.9.0",
-		"nodemon": "^1.19.0",
-		"yarn": "^1.22.0"
-	},
-	"engines": {
-		"node": "10.x"
-	}
+  "name": "moibot",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "description": "A Community Discord Bot",
+  "scripts": {
+    "dev": "nodemon -L --exec babel-node src/index.js",
+    "build": "babel src -d dist",
+    "start": "yarn build && node dist/index.js",
+    "dev:docker": "docker-compose up -d && yarn test",
+    "build:docker": "docker-compose build",
+    "start:docker": "docker-compose up -d",
+    "end:docker": "docker-compose down",
+    "clean:docker": "docker system prune -f",
+    "test": "jest --watch"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bufferutil": "^4.0.1",
+    "cheerio": "^1.0.0-rc.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "eris": "^0.11.2",
+    "eventemitter3": "^4.0.0",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "pako": "^1.0.11",
+    "sodium-native": "^3.0.0",
+    "woke-dyno": ">=0.0.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/node": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "superagent": "^5.2.2",
+    "supertest": "^4.0.2",
+    "yarn": "^1.22.0"
+  }
 }

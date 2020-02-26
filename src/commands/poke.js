@@ -1,1 +1,1 @@
-export default function Poke(command) {}
+export default moi => {};

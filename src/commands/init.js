@@ -1,5 +1,5 @@
-export default function init(command) {
-	command.on('ready', () => {
+export default moi => {
+	moi.on('ready', () => {
 		console.log('Online...');
 	});
-}
+};
