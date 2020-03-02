@@ -29,6 +29,8 @@ export default (moi, msg) => {
   let clean = (variables.search = toCapitalize(
     msg.content.replace(`${process.env.prefix}manga `, '')
   ));
+
+  clean = msg;
   axios
     .post('https://graphql.anilist.co', {
       query,
@@ -37,12 +39,12 @@ export default (moi, msg) => {
     .then(response => {
       let moititle;
       let isFound = false;
+      const toCode = '```';
       const { media } = response.data.data.Page;
       media.forEach(item => {
         let {
           nameCheck,
           title,
-          toCode,
           format,
           chapters,
           volumes,
@@ -62,17 +64,19 @@ export default (moi, msg) => {
 
         if (!nameCheck) {
           if (isFound) {
-            moiBreak(`${clean} Found`);
+            moiBreak(`Found`);
           }
-          moi.createMessage(msg.channel.id, `${clean} Not Found`);
-          moiBreak(`${clean} Not Found`);
+          moi.createMessage(msg.channel.id, `Not Found`);
+          moiBreak(`Not Found`);
         }
 
         isFound = true;
-				toCode = '```';
-				
+
         const message = `
 				${toCode}\n${moititle}\n${format}\nChapters: ${chapters}\nVolumes: ${volumes}\nGenre: ${genres}\nScore: ${averageScore}\nPopularity: ${popularity}\n${toCode}`;
+        /**
+         * Creates a message for the
+         */
         moi.createMessage(msg.channel.id, message);
       });
     })
