@@ -1,3 +1,4 @@
 import moiBreak from './toBreak/moiBreak';
 import toCapitalize from './toCapitalize'
-export { moiBreak, toCapitalize };
+import fetchMoi from './fetchMoi/index';
+export { moiBreak, toCapitalize,fetchMoi };
