@@ -54,9 +54,8 @@ export default moi => {
         });
     },
     {
-      description: 'Searches Anilist for Manga',
-      fullDescription:
-        "This command could be used to check if the bot is up. Or entertainment when you're bored.",
+      description: 'Searches Robinhood for Stock Information',
+      fullDescription: 'Searches Robinhood for Stock Information',
     }
   );
 

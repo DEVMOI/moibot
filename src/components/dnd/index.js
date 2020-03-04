@@ -10,30 +10,45 @@ export default moi => {
     'dnd',
     msg => {
       let query = msg.content.replace('()dnd ', '').split(' ');
-      if (query[0].includes('class')) {
+      if (query[0] == 'class' || query[0] == 'classes') {
+        query[0] == 'class' ? (query[0] = 'classes') : null;
         fetchMoi(`http://www.dnd5eapi.co/api/${query[0]}/${query[1]}`)
           .then(res => {
             const data = JSON.parse(res.body);
-            // console.log(data);
-            const { name, hit_die, proficiency_choices } = data;
+            const {
+              name,
+              hit_die,
+              proficiency_choices,
+              proficiencies,
+              saving_throws,
+              starting_equipment,
+              class_levels,
+              subclasses,
+              spellcasting,
+            } = data;
             let toCode = '```';
 
+            function getArray(array) {
+              let arr = [];
+              array.forEach(prof => {
+                arr.push('-' + prof.name + ' ');
+              });
+              return arr.join('\r\n');
+            }
             const result =
               toCode +
-              'Class Info:\r\n\r\n' +
-              `Name: ${name}` +
-              '\r\n' +
-              `Hit Die: ${hit_die}` +
-              '\r\n' +
-              `proficiency_choices: ${proficiency_choices[0].choose}` +
-              '\r\n' +
-              `-` +
-              (() => {
-                proficiency_choices[0].choose;
-              })() +
-              '\r\n' +
+              'Class Info:\r\n_______________\r\n\r\n' +
+              `Name: ${name}\r\n` +
+              `Hit Die: ${hit_die}\r\n\r\n` +
+              `Skill Choices: ${proficiency_choices[0].choose}\r\n` +
+              getArray(proficiency_choices[0].from) +
+              '\r\n\r\n' +
+              'Proficiencies:\r\n' +
+              getArray(proficiencies) +
+              '\r\n\r\n' +
+              'Saving Throws:\r\n' +
+              getArray(saving_throws) +
               toCode;
-            console.log(result);
             moi.createMessage(msg.channel.id, result);
           })
           .catch(err => {
