@@ -9,7 +9,8 @@ export default moi => {
   moi.registerCommand(
     'dnd',
     msg => {
-      let query = msg.content.replace('()dnd ', '').split(' ');
+      let query = msg.content.replace(msg.prefix + 'dnd ', '').split(' ');
+      console.log(msg.prefix);
       if (query[0] == 'class' || query[0] == 'classes') {
         query[0] == 'class' ? (query[0] = 'classes') : null;
         fetchMoi(`https://www.dnd5eapi.co/api/${query[0]}/${query[1]}`)

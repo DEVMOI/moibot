@@ -9,7 +9,7 @@ export default moi => {
   moi.registerCommand(
     '$',
     msg => {
-      let stockSymbol = msg.content.toUpperCase().replace('()$ ', '');
+      let stockSymbol = msg.content.toUpperCase().replace(msg.prefix+'$ ', '');
       fetchMoi(`https://robinhood.com/stocks/${stockSymbol}`)
         .then(res => {
           let $ = cheerio.load(res.body, {
