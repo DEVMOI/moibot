@@ -27,7 +27,7 @@ const variables = {
 };
 export default (moi, msg) => {
   let clean = (variables.search = toCapitalize(
-    msg.content.replace(`${process.env.prefix}manga `, '')
+    msg.content.replace(`${msg.prefix}manga `, '')
   ));
 
   clean = msg;

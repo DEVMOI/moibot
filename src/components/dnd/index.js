@@ -1,55 +1,167 @@
-import { fetchMoi } from '../../util';
+import { fetchMoi, toCapitalize, toCode } from '../../util';
 
 /**
  *
  * @param {*} moi // Used to init bot commands
  */
 export default moi => {
-  //Robinhood Status
   moi.registerCommand(
     'dnd',
     msg => {
-      let query = msg.content.replace('()dnd ', '').split(' ');
+      let query = msg.content.replace(msg.prefix + 'dnd ', '').split(' ');
+      // console.log(query)
       if (query[0] == 'class' || query[0] == 'classes') {
-        query[0] == 'class' ? (query[0] = 'classes') : null;
-        fetchMoi(`http://www.dnd5eapi.co/api/${query[0]}/${query[1]}`)
+        fetchMoi(`https://api.open5e.com/classes/`)
           .then(res => {
             const data = JSON.parse(res.body);
+
+            let Class;
+            let levelTable = `~ Proficiencies ~\r\n`;
+
+            data.results.forEach(cls => {
+              cls.name == toCapitalize(query[1]) ? (Class = cls) : null;
+            });
             const {
               name,
-              hit_die,
-              proficiency_choices,
-              proficiencies,
-              saving_throws,
-              starting_equipment,
-              class_levels,
-              subclasses,
-              spellcasting,
-            } = data;
-            let toCode = '```';
-
-            function getArray(array) {
-              let arr = [];
-              array.forEach(prof => {
-                arr.push('-' + prof.name + ' ');
-              });
-              return arr.join('\r\n');
-            }
+              desc,
+              hit_dice,
+              hp_at_1st_level,
+              hp_at_higher_levels,
+              prof_armor,
+              prof_weapons,
+              prof_tools,
+              prof_saving_throws,
+              prof_skills,
+              equipment,
+              table,
+              spellcasting_ability,
+              subtypes_name,
+              archetypes,
+            } = Class;
+            // console.log(Class);
             const result =
-              toCode +
-              'Class Info:\r\n_______________\r\n\r\n' +
-              `Name: ${name}\r\n` +
-              `Hit Die: ${hit_die}\r\n\r\n` +
-              `Skill Choices: ${proficiency_choices[0].choose}\r\n` +
-              getArray(proficiency_choices[0].from) +
-              '\r\n\r\n' +
-              'Proficiencies:\r\n' +
-              getArray(proficiencies) +
-              '\r\n\r\n' +
-              'Saving Throws:\r\n' +
-              getArray(saving_throws) +
-              toCode;
-            moi.createMessage(msg.channel.id, result);
+              `~ ${name} Information ~\r\n\r\n` +
+              `~ Hit Points ~\r\n` +
+              `Hit Dice: ${hit_dice}\r\n` +
+              `Hit Points at 1st Level: ${hp_at_1st_level}\r\n` +
+              `Hit Points at Higher Levels: ${hp_at_higher_levels}\r\n\r\n` +
+              `~ Proficiencies ~\r\n` +
+              `Armor: ${toCapitalize(prof_armor)}\r\n` +
+              `Weapons: ${toCapitalize(prof_weapons)}\r\n` +
+              `Tools: ${toCapitalize(prof_tools)}\r\n` +
+              `Saving Throws: ${toCapitalize(prof_saving_throws)}\r\n` +
+              `Skills: ${prof_skills}\r\n\r\n` +
+              `~ Equipment ~\r\n` +
+              `${equipment}\r\n`;
+
+            moi.createMessage(msg.channel.id, toCode(result));
+
+            const handleClassTable = table => {
+              if (table.length <= 2000) {
+                moi.createMessage(msg.channel.id, toCode(table));
+              }
+              if (name == 'Bard') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1882))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1882, 3762))
+                );
+              }
+              if (name == 'Cleric') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1935))
+                );
+
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1935, 3870))
+                );
+              }
+              if (name == 'Druid') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1232))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1232, 2155))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(2155, 3387))
+                );
+              }
+              if (name == 'Monk') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1299 + 260))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1299 + 260, 2858))
+                );
+              }
+              if (name == 'Paladin') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1272))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1272, 2330))
+                );
+              }
+              if (name == 'Ranger') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1272 + 7 + 255))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1272 + 7 + 256, 2815))
+                );
+              }
+              if (name == 'Sorcerer') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1272 + 7 + 257 + 132))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1272 + 7 + 257 + 133, 2815 + 23))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(2815 + 23, 3672))
+                );
+              }
+              if (name == 'Warlock') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1668 + 58))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1688 + 39, 3166))
+                );
+              }
+              if (name == 'Wizard') {
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(0, 1668 + 58 + 27))
+                );
+                moi.createMessage(
+                  msg.channel.id,
+                  toCode(table.substring(1688 + 39 + 27, 2968))
+                );
+              }
+              console.log(table.length);
+            };
+            handleClassTable(table);
           })
           .catch(err => {
             if (err.isAxiosError) {
@@ -64,16 +176,3 @@ export default moi => {
     }
   );
 };
-
-// let toCode = '```';
-// moi.createMessage(
-//   msg.channel.id,
-//   `${statusMessage +
-//     toCode +
-//     $('.updates')
-//       .children()
-//       .text()
-//       .replace(/       \s+/g, '\n') +
-//     toCode}`
-// );
-// .replace(/       \s+/g, '\n')
