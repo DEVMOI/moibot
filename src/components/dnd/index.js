@@ -12,7 +12,7 @@ export default moi => {
       let query = msg.content.replace('()dnd ', '').split(' ');
       if (query[0] == 'class' || query[0] == 'classes') {
         query[0] == 'class' ? (query[0] = 'classes') : null;
-        fetchMoi(`http://www.dnd5eapi.co/api/${query[0]}/${query[1]}`)
+        fetchMoi(`https://www.dnd5eapi.co/api/${query[0]}/${query[1]}`)
           .then(res => {
             const data = JSON.parse(res.body);
             const {
