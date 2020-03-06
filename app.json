@@ -1,7 +1,5 @@
 {
-  "addons": [
-
-  ],
+  "addons": [],
   "buildpacks": [
     {
       "url": "heroku/nodejs"
@@ -10,10 +8,8 @@
   "env": {
     "NODE_ENV": "development"
   },
-  "formation": {
-  },
+  "formation": {},
   "name": "moibot",
-  "scripts": {
-  },
+  "scripts": {},
   "stack": "heroku-18"
 }

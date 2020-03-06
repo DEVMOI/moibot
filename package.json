@@ -24,9 +24,11 @@
     "eris": "^0.11.2",
     "eventemitter3": "^4.0.0",
     "express": "^4.17.1",
+    "jsdom": "^16.2.0",
     "lodash": "^4.17.15",
     "ml5": "^0.4.3",
     "pako": "^1.0.11",
+    "showdown": "^1.9.1",
     "sodium-native": "^3.0.0",
     "woke-dyno": ">=0.0.4"
   },
